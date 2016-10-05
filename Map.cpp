@@ -16,30 +16,26 @@ Map::Map()  // Generates a 10x10 blank map
     name = "Default Map";
     description = "10x10";
     width = 10;
-    height = 10;
-    cells = 0;
+    length = 10;
     
-    for (unsigned int i = 0; i < (width*height); i++)
+    for (unsigned int i = 0; i < width; i++)
     {
-        cellList[i] = new Cell();
-        cells++;
+        grid[i] = new Cell[width];
     }
     
-    this -> setBorders();
+    //this -> setBorders();
 } // End of Default Constructor
 
-Map::Map(int w, int h)  // Generates a WxH blank map
+Map::Map(int w, int l)  // Generates a WxH blank map
 {
     name = "Default Map";
     description = to_string(w) + "x" + to_string(h);
     width = w;
-    height = h;
-    cells = 0;
+    length = l;
     
-    for (unsigned int i = 0; i < (width*height); i++)
+    for (unsigned int i = 0; i < width; i++)
     {
-        cellList[i] = new Cell();
-        cells++;
+        grid[i] = new Cell[width];
     }
     
     this -> setBorders();
@@ -51,10 +47,11 @@ Map::Map(int w, int h)  // Generates a WxH blank map
 string Map::getName() const {return name;}
 string Map::getDescription() const {return description;}
 int Map::getWidth() const {return width;}
-int Map::getHeight() const {return height;}
-int Map::getsize() const {return cells;}
+int Map::getLength() const {return length;}
 int Map::getStart() const {return start;}
 int Map::getFinish() const {return finish;}
+
+Cell Map::getCell(int x, int y) {return grid[x][y];}
 
 
 // ATTRIBUTE EDITORS
@@ -64,45 +61,10 @@ void Map::setDescription(string d) {description = d;}
 void Map::setStart(int s) {start = s;}
 void Map::setFinish(int f) {finish = f;}
 
-
-// GET LOCATION OF CELLS
-
-Cell Map::getCell(int c) {return *cellList[c];}
-
-Cell Map::getCell(int x, int y)
+void Map::setCell(int x, int y, char c)
 {
-    if (x > width || y > height) {
-        throw "Coordinates do not apply to map";
-    }
-    try {
-        int number = (y-1) * width;
-        number += x;
-        return this->getCell(number);   // (x, y) coordinates converted to linear
-    } catch (Cell error) {
-        return error;
-    }
-} // End of getCell function
-
-
-// DEFINE AND SET CELL BORDERS
-
-void Map::setBorders()
-{
-    for (unsigned int i = 0; i < cells; i++) {
-        
-        if (i % width == 0) {cellList[i]->setWest(i);}  // no western border
-        else {cellList[i]->setWest(i-1);}
-            
-        if ((i+1) % width == 0) {cellList[i]->setEast(i);}  // no eastern border
-        else {cellList[i]->setEast(i+1);}
-        
-        if (i > 0 && i < width) {cellList[i]->setNorth(i);} // no northern border
-        else {cellList[i]->setNorth(i-width);}
-        
-        if (i > (width*height)-width && i < (width*height)) {cellList[i]->setSouth(i);} // no southern border
-        else {cellList[i]->setSouth(i+width);}
-    }
-} // End of setBorders function
+    this -> getCell(x, y).addInter(c);
+}
 
 
 // CHECK MAP FOR VIABLE PATH FROM START TO FINISH
