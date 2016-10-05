@@ -8,6 +8,7 @@
 #define Map_hpp
 
 #include <stdio.h>
+#include <vector>
 #include "Cell.hpp"
 
 class Cell;
@@ -17,7 +18,8 @@ class Map
     string name;
     string description;
     int width, length;
-    int start, finish;
+    int startX, startY;
+    int finishX, finishY;
 
     Cell ** grid = new Cell*[length]();
     
@@ -35,10 +37,12 @@ public:
 
     void setName(string);
     void setDescription(string);
-    void setStart(int);
-    void setFinish(int);
+    void setStart(int, int);
+    void setFinish(int, int);
     void setCell(int, int, char);
-    bool checkPath(int);
+    void clearFlags();
+    bool checkPath(int, int);
+    bool checkPath();
 };
 
 #endif /* Map_hpp */

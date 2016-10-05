@@ -20,8 +20,6 @@ Map::Map()  // Generates a 10x10 blank map
     {
         grid[i] = new Cell[width];
     }
-    
-    //this -> setBorders();
 } // End of Default Constructor
 
 Map::Map(int w, int l)  // Generates a WxH blank map
@@ -35,8 +33,6 @@ Map::Map(int w, int l)  // Generates a WxH blank map
     {
         grid[i] = new Cell[width];
     }
-    
-    this -> setBorders();
 } // End of Constructor
 
 
@@ -56,41 +52,54 @@ Cell Map::getCell(int x, int y) {return grid[x][y];}
 
 void Map::setName(string n) {name = n;}
 void Map::setDescription(string d) {description = d;}
-void Map::setStart(int s) {start = s;}
-void Map::setFinish(int f) {finish = f;}
+void Map::setStart(int x, int y) {startX = x; startY = y;}
+void Map::setFinish(int x, int y) {finishX = x; finishY = y;}
 
 void Map::setCell(int x, int y, char c)
 {
     this -> getCell(x, y).addInter(c);
 }
 
+void Map::clearFlags()
+{
+    for (unsigned int i = 0; i < width; i++)
+    {
+        for (unsigned int j = 0; j < length; j++)
+        {
+            this -> getCell(i, j).unflag();
+        }
+    }
+}
+
 
 // CHECK MAP FOR VIABLE PATH FROM START TO FINISH
 
-bool Map::checkPath(int st) // Infinite loop case to be resolved
+bool Map::checkPath(int x, int y) // Infinite loop case to be resolved
 {
-    int direct[4];  // cell borders for current location
-    
-    direct[0] = this->getCell(st).getN();
-    direct[1] = this->getCell(st).getE();
-    direct[2] = this->getCell(st).getW();
-    direct[3] = this->getCell(st).getS();
-    
+    vector<int> north, south, east, west;
+
+    north = {x, (y == length ? y : y + 1)};
+    south = {x, (y == 0 ? y : y - 1)};
+    east = {(x == width ? x : x + 1), y};
+    west = {(x == 0 ? x : x - 1), y};
+
+    vector<vector<int>> borders = {north, east, west, south};
+
     for (unsigned int i = 0; i < 4; i++)
     {
-        if (st == finish)                               // reach finish cell
+        if (x == finishX && y == finishY)                               // reach finish cell
         {
             return true;
         }
-        else if (this->getCell(direct[i]).isflagged())  // avoids moving to already visited cell
+        else if (this->getCell(borders[i][0], borders[i][1]).isFlagged())  // avoids moving to already visited cell
         {
-            this->getCell(st).flag();                   // flag current cell
+            this->getCell(x, y).flag();                   // flag current cell
             continue;                                   // move on to next option
         }
-        else if (this->getCell(direct[i]).isOpen())     // finds open bordering cell
+        else if (!(this->getCell(borders[i][0], borders[i][1])).getInter().block())     // finds open bordering cell
         {
-            this->getCell(st).flag();                   // flag current cell before moving on
-            checkPath(direct[i]);                       // recursion on next cell
+            this->getCell(x, y).flag();                   // flag current cell before moving on
+            checkPath(borders[i][0], borders[i][1]);                       // recursion on next cell
         }
     }
     
@@ -98,3 +107,9 @@ bool Map::checkPath(int st) // Infinite loop case to be resolved
     return false;
     
 } // End of checkPath function
+
+bool Map::checkPath()
+{
+    this -> clearFlags();
+    this -> checkPath(startX, startY);
+}
