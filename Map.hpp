@@ -2,9 +2,7 @@
 //  Map.hpp
 //  Map
 //
-//  Created by Garrison Blair on 2016-10-02.
-//  Copyright © 2016 Garrison Blair. All rights reserved.
-//
+
 
 #ifndef Map_hpp
 #define Map_hpp
@@ -18,11 +16,10 @@ class Map
 {
     string name;
     string description;
-    int width, height;
+    int width, length;
     int start, finish;
-    
-    Cell * cellList[1024];
-    int cells;
+
+    Cell ** grid = new Cell*[length]();
     
 public:
     Map();
@@ -31,18 +28,16 @@ public:
     string getName() const;
     string getDescription() const;
     int getWidth() const;
-    int getHeight() const;
-    int getsize() const;
+    int getLength() const;
     int getStart() const;
     int getFinish() const;
-    
+    Cell getCell(int, int);
+
     void setName(string);
     void setDescription(string);
     void setStart(int);
     void setFinish(int);
-    Cell getCell(int);
-    Cell getCell(int, int);
-    void setBorders();
+    void setCell(int, int, char);
     bool checkPath(int);
 };
 

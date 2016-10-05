@@ -2,9 +2,7 @@
 //  Character.hpp
 //  dungeons1
 //
-//  Created by Garrison Blair on 2016-09-28.
-//  Copyright © 2016 Garrison Blair. All rights reserved.
-//
+
 
 #ifndef Character_hpp
 #define Character_hpp

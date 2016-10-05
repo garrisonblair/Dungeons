@@ -2,9 +2,7 @@
 //  Cell.hpp
 //  Map
 //
-//  Created by Garrison Blair on 2016-10-02.
-//  Copyright © 2016 Garrison Blair. All rights reserved.
-//
+
 
 #ifndef Cell_hpp
 #define Cell_hpp
@@ -19,11 +17,8 @@ class Interaction;
 class Cell
 {
     bool empty;
-    bool open;
     bool flagged;
-    int borders[4];
-    int bNorth, bSouth, bEast, bWest;
-    Interaction inter;      // Character, Opponent, Chest, Wall, Door
+    Interaction inter;      // Ally, Opponent, Chest, Wall, Door
     
 public:
     Cell();
@@ -31,23 +26,13 @@ public:
     Cell(Interaction);
     
     bool isEmpty();
-    bool isOpen();
-    bool isflagged();
-    int getN() const;
-    int getS() const;
-    int getE() const;
-    int getW() const;
-    int * getBorders();
+    bool isFlagged();
     Interaction getInter();
     
-    void setNorth(int);
-    void setSouth(int);
-    void setEast(int);
-    void setWest(int);
     void flag();
     void unflag();
     
-    void addInter(Interaction);
+    void addInter(char);
     void removeInter();
 };
 

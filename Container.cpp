@@ -2,9 +2,7 @@
 //  Container.cpp
 //  dungeons1
 //
-//  Created by Garrison Blair on 2016-09-28.
-//  Copyright © 2016 Garrison Blair. All rights reserved.
-//
+
 
 #include "Container.hpp"
 #include "Item.hpp"

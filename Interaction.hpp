@@ -2,9 +2,7 @@
 //  Interaction.hpp
 //  Map
 //
-//  Created by Garrison Blair on 2016-10-02.
-//  Copyright © 2016 Garrison Blair. All rights reserved.
-//
+
 
 #ifndef Interaction_hpp
 #define Interaction_hpp
