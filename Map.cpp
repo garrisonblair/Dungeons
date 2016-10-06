@@ -25,7 +25,7 @@ Map::Map()  // Generates a 10x10 blank map
 Map::Map(int w, int l)  // Generates a WxH blank map
 {
     name = "Default Map";
-    description = to_string(w) + "x" + to_string(h);
+    description = to_string(w) + "x" + to_string(l);
     width = w;
     length = l;
     
@@ -87,29 +87,61 @@ bool Map::checkPath(int x, int y) // Infinite loop case to be resolved
 
     for (unsigned int i = 0; i < 4; i++)
     {
-        if (x == finishX && y == finishY)                               // reach finish cell
+        this->getCell(x, y).flag();     // flag current cell
+
+        if (x == finishX && y == finishY)       // reach finish cell
         {
             return true;
         }
-        else if (this->getCell(borders[i][0], borders[i][1]).isFlagged())  // avoids moving to already visited cell
+        else if (this->getCell(borders[i][0], borders[i][1]).isFlagged())   // avoids moving to already visited cell
         {
-            this->getCell(x, y).flag();                   // flag current cell
-            continue;                                   // move on to next option
+            continue;       // move on to next option
         }
         else if (!(this->getCell(borders[i][0], borders[i][1])).getInter().block())     // finds open bordering cell
         {
-            this->getCell(x, y).flag();                   // flag current cell before moving on
-            checkPath(borders[i][0], borders[i][1]);                       // recursion on next cell
+            try
+            {
+                checkPath(borders[i][0], borders[i][1]);        // recursion on next cell
+            } catch (bool dead_end) {
+                return dead_end;
+            }
+
+        }
+        else if (i == 3)
+        {
+            if (x != startX && y != startY) throw ("Dead End");
         }
     }
-    
+
     // no path is found
     return false;
-    
+
+} // End of checkPath function
+
+
+// CHECK MAP FOR VIABLE PATH FROM START TO FINISH
+
+bool Map::checkPath(int x, int y) // Infinite loop case to be resolved
+{
+    for (unsigned int i = 0; i < length*width ; i++)
+    {
+        grid[x][y].flag();
+        if      ((x == finishX) && (y == finishY)) return true;
+        if      ((!grid[x][y+1].isFlagged()) && (y != length) && (!grid[x][y+1].getInter().block()))
+            checkPath(x, y + 1);
+        else if ((!grid[x+1][y].isFlagged()) && (x != width) && (!grid[x+1][y].getInter().block()))
+            checkPath(x + 1, y);
+        else if ((!grid[x-1][y].isFlagged()) && (x != 0) && (!grid[x-1][y].getInter().block()))
+            checkPath(x - 1, y);
+        else if ((!grid[x][y-1].isFlagged()) && (y != 0)&& (!grid[x][y-1].getInter().block()))
+            checkPath(x, y - 1);
+        else break;
+    }
+    return false;
 } // End of checkPath function
 
 bool Map::checkPath()
 {
     this -> clearFlags();
-    this -> checkPath(startX, startY);
+    return this -> checkPath(startX, startY);
 }
