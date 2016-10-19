@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 #include <vector>
-#include "Cell.hpp"
+#include "Cell.h"
 
 class Cell;
 

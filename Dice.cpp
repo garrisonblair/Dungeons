@@ -1,5 +1,5 @@
 ///*
-#include "Dice.hpp"
+#include "Dice.h"
 
 Dice::Dice()
 {

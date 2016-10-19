@@ -2,22 +2,20 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/Map.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Dice.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Dice.hpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Container.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Character.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Character.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Cell.hpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Dice.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Interaction.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Item.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Interaction.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Map.hpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Map.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Container.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Container.hpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Item.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Character.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Item.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Cell.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Cell.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Map.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

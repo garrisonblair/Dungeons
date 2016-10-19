@@ -1,16 +1,10 @@
-//
-//  Item.cpp
-//  dungeons1
-//
-
-
-#include "Item.hpp"
+#include "Item.h"
 
 Item::Item() {}
 
 Item::Item(char type, int e)
 {
-    
+
     switch (type) {
         case 'h':
         {
@@ -75,11 +69,13 @@ Item::Item(char type, int e)
             }
             break;
         }
-            
+
         default:
             break;
     }
-    
+
+    enchantment = e;
+
 }
 
 Item::Item(const Item &item)

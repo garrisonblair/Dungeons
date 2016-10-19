@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
-#include "Item.hpp"
-#include "Dice.hpp"
+#include "Item.h"
+#include "Dice.h"
 
 using namespace std;
 

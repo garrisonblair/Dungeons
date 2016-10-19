@@ -1,11 +1,5 @@
-//
-//  Container.cpp
-//  dungeons1
-//
-
-
-#include "Container.hpp"
-#include "Item.hpp"
+#include "Container.h"
+#include "Item.h"
 
 Container::Container()
 {
@@ -25,6 +19,8 @@ void Container::addItem(Item item)
         itemList[items] = item;
         items++;
     }
+    else
+        cout << "Container is full, cannot add Item" << endl;
 }
 
 Item Container::getItem(string name)
@@ -34,7 +30,7 @@ Item Container::getItem(string name)
             return itemList[i];
         }
     }
-    cout << "Item ' " << name << " ' not in container" << endl;
+    cout << "Item '" << name << "' not in container" << endl;
     return *new Item;
-    
+
 }

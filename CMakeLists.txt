@@ -5,19 +5,17 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
     Cell.cpp
-    Cell.hpp
+        Cell.h
     Character.cpp
-    Character.hpp
+        Character.h
     Container.cpp
-    Container.hpp
+        Container.h
     Dice.cpp
-    Dice.hpp
-    Interaction.cpp
-    Interaction.hpp
-    Item.cpp
-    Item.hpp
+        Dice.h
+        Item.cpp
+        Item.h
     main.cpp
     Map.cpp
-    Map.hpp)
+        Map.h)
 
 add_executable(Dungeons ${SOURCE_FILES})

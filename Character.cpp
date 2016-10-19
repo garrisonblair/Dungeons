@@ -4,7 +4,7 @@
 //
 
 
-#include "Character.hpp"
+#include "Character.h"
 
 Character::Character()
 {
