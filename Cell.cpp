@@ -1,67 +1,42 @@
-//
-//  Cell.cpp
-//  Map
-//
-
-
 #include "Cell.h"
 
+Type::Type()
+{
+    blocked = false;
+}
 
-// CONSTRUCTORS
+Type::Type(int in)
+{
+    if (in == 0) blocked = true;
+    else blocked = false;
+}
+
+bool Type::isBlocked() const { return blocked; }
+
 
 Cell::Cell()
 {
-    empty = true;
     flagged = false;
-} // End of Default Constructor
+}
 
-Cell::Cell(const Cell &c)
+Cell::Cell(Type in)
 {
-    empty = c.empty;
-    flagged = c.flagged;
-    if (c.empty == false) inter = c.inter;
-} // End of Copy Constructor
-
-Cell::Cell(Interaction in)
-{
-    inter = in;
-    empty = true;
     flagged = false;
-} // End of Constructor
+    type = in;
+}
 
+//bool Cell::isEmpty() const { return empty; }
+bool Cell::isFlagged() const { return flagged; }
 
-// BOOLEAN STATE CHECKS
+void Cell::flag() { flagged = true; }
+void Cell::unFlag() { flagged = false; }
 
-bool Cell::isEmpty()    // Cell is empty
+void Cell::setType(int in)
 {
-    return empty;
-} // End of isEmpty function
+    type = Type(in);
+}
 
-bool Cell::isFlagged()  // Cell has been visited
-{
-    return flagged;
-} // End of isFlagged function
+//void Cell::removeType() { empty = true; }
 
+Type Cell::getType() const { return type; }
 
-// ATTRIBUTE ACCESSORS
-
-Interaction Cell::getInter() {return inter;}
-
-
-// ATTRIBUTE EDITORS
-
-void Cell::flag() {flagged = true;}
-void Cell::unflag() {flagged = false;}
-
-void Cell::addInter(char in)
-{
-    inter = Interaction(in);
-    if (empty) {
-        empty = false;
-    }
-} // End of addInter function
-
-void Cell::removeInter()
-{
-    empty = true;
-} // End of removeInter function

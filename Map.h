@@ -1,17 +1,7 @@
-//
-//  Map.hpp
-//  Map
-//
+#ifndef MAP_MAP_H
+#define MAP_MAP_H
 
-
-#ifndef Map_hpp
-#define Map_hpp
-
-#include <stdio.h>
-#include <vector>
 #include "Cell.h"
-
-class Cell;
 
 class Map
 {
@@ -19,30 +9,27 @@ class Map
     string description;
     int width, length;
     int startX, startY;
-    int finishX, finishY;
+    int endX, endY;
 
-    Cell ** grid = new Cell*[length]();
-    
+    Cell ** grid;
+
 public:
     Map();
     Map(int, int);
-    
+
     string getName() const;
     string getDescription() const;
-    int getWidth() const;
-    int getLength() const;
-    int getStart() const;
-    int getFinish() const;
     Cell getCell(int, int);
 
     void setName(string);
     void setDescription(string);
     void setStart(int, int);
-    void setFinish(int, int);
-    void setCell(int, int, char);
+    void setEnd(int, int);
+    void setCell(int, int, int);
     void clearFlags();
+
     bool checkPath(int, int);
-    bool checkPath();
+    bool test();
 };
 
-#endif /* Map_hpp */
+#endif //MAP_MAP_H

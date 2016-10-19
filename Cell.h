@@ -1,39 +1,37 @@
-//
-//  Cell.hpp
-//  Map
-//
+#ifndef MAP_CELL_H
+#define MAP_CELL_H
 
-
-#ifndef Cell_hpp
-#define Cell_hpp
-
-#include <stdio.h>
 #include <iostream>
-#include "Interaction.hpp"
 
 using namespace std;
-class Interaction;
+
+class Type
+{
+    bool blocked;
+
+public:
+    Type();
+    Type(int);
+
+    bool isBlocked() const;
+};
 
 class Cell
 {
-    bool empty;
     bool flagged;
-    Interaction inter;      // Ally, Opponent, Chest, Wall, Door
-    
+    Type type;
+
 public:
     Cell();
-    Cell(const Cell &);
-    Cell(Interaction);
-    
-    bool isEmpty();
-    bool isFlagged();
-    Interaction getInter();
-    
+    Cell(Type);
+
+    bool isFlagged() const;
+
     void flag();
-    void unflag();
-    
-    void addInter(char);
-    void removeInter();
+    void unFlag();
+    void setType(int);
+
+    Type getType() const;
 };
 
-#endif /* Cell_hpp */
+#endif //MAP_CELL_H
