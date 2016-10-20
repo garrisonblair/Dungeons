@@ -1,9 +1,3 @@
-//
-//  Character.hpp
-//  dungeons1
-//
-
-
 #ifndef Character_hpp
 #define Character_hpp
 
@@ -24,7 +18,7 @@ class Character {
                     //	int damage;		//Damage Bonus
     int health;		//Character Hit Points
                     //	int armor;		//Armor Class
-    int stats[9]; 	//[STR, DEX, CON, INT, WIS, CHA, AC, ATK, DMG]
+    int stats[9]; 	// [STR, DEX, CON, INT, WIS, CHA, AC, ATK, DMG]
     
     // Item Slots
     

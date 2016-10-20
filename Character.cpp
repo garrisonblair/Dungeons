@@ -1,9 +1,3 @@
-//
-//  Character.cpp
-//  dungeons1
-//
-
-
 #include "Character.h"
 
 Character::Character()

@@ -4,8 +4,10 @@ Item::Item() {}
 
 Item::Item(char type, int e)
 {
-
+    // Attributes assigned based on type
+    // Enchantment applied to stats affected based on type of item
     switch (type) {
+        // Helmet
         case 'h':
         {
             name = "Helmet";
@@ -15,6 +17,7 @@ Item::Item(char type, int e)
             }
             break;
         }
+        // Armor
         case 'a':
         {
             name = "Armor";
@@ -24,6 +27,7 @@ Item::Item(char type, int e)
             }
             break;
         }
+        // Shield
         case 's':
         {
             name = "Shield";
@@ -33,6 +37,7 @@ Item::Item(char type, int e)
             }
             break;
         }
+        // Ring
         case 'r':
         {
             name = "Ring";
@@ -42,6 +47,7 @@ Item::Item(char type, int e)
             }
             break;
         }
+        // Belt
         case 'c':
         {
             name = "Belt";
@@ -51,6 +57,7 @@ Item::Item(char type, int e)
             }
             break;
         }
+        // Boots
         case 'b':
         {
             name = "Boots";
@@ -60,6 +67,7 @@ Item::Item(char type, int e)
             }
             break;
         }
+        // Weapon
         case 'w':
         {
             name = "Weapon";
@@ -75,7 +83,6 @@ Item::Item(char type, int e)
     }
 
     enchantment = e;
-
 }
 
 Item::Item(const Item &item)
@@ -92,3 +99,5 @@ string Item::getName() const { return name;}
 char Item::getType() const { return type;}
 
 int Item::getEnchantment() const { return enchantment;}
+
+void Item::setName(string n) { name = n;}

@@ -1,30 +1,24 @@
-//
-//  Container.hpp
-//  dungeons1
-//
-
-
 #ifndef Container_hpp
 #define Container_hpp
 
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include "Item.h"
 
-class Item;
 using namespace std;
 
 class Container
 {
-    Item * itemList;
-    int items;
+    Item * itemList;        // List of items
+    int items;              // Size of item list
     
 public:
-    Container();
-    ~Container();
+    Container();            // Default Constructor
+    ~Container();           // Destructor
     
-    void addItem(Item);
-    Item getItem(string);
+    void addItem(Item);     // Add item to container
+    Item getItem(string);   // Get Item from container based on name
 };
 
 #endif /* Container_hpp */
