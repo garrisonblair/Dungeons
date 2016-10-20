@@ -100,4 +100,6 @@ char Item::getType() const { return type;}
 
 int Item::getEnchantment() const { return enchantment;}
 
+int* Item::getEnhancement() { return enhance;}
+
 void Item::setName(string n) { name = n;}

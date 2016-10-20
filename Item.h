@@ -25,7 +25,7 @@ public:
     string getName() const;
     char getType() const;
     int getEnchantment() const;
-    const int * getEnhancement() const;
+    int * getEnhancement();
 
     void setName(string);   // Set specific name to item
 };
