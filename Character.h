@@ -11,17 +11,13 @@ using namespace std;
 
 class Character {
     
-    string name;	//Character Name
-    string role;	//Character Class
-    int level;		//Character Level
-                    //	int attack; 	//Attack Bonus
-                    //	int damage;		//Damage Bonus
-    int health;		//Character Hit Points
-                    //	int armor;		//Armor Class
+    string name;	// Character Name
+    string role;	// Character Class
+    int level;		// Character Level
+    int health;		// Character Hit Points
     int stats[9]; 	// [STR, DEX, CON, INT, WIS, CHA, AC, ATK, DMG]
     
     // Item Slots
-    
     Item armor;
     Item helmet;
     Item boots;
@@ -30,13 +26,15 @@ class Character {
     Item ring;
     
 public:
-    Character(); 					//default constructor
-    Character(int, string, string); //constructor w/ level
-    ~Character(); 					//deconstructor
+    Character(); 					    // default constructor
+    Character(int, string, string);     // constructor w/ level
+    ~Character(); 					    // deconstructor
+
+    int * getStats();       // returns stats array
     
-    void equip(Item&); 		//applies stat changes from items
-    int mod(int); 			//calculates stat modifier
-    int prof();				//calculates proficiency bonus
+    void equip(Item&); 		// applies stat changes from items
+    int mod(int); 			// calculates stat modifier
+    int prof();				// calculates proficiency bonus
 };
 
 #endif /* Character_hpp */
