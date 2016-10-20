@@ -1,13 +1,14 @@
-//
-//  main.cpp
-//  Map
-//
-
-
 #include <iostream>
+#include "Cell.h"
+#include "Map.h"
+#include "Character.h"
+#include "Item.h"
+#include "Container.h"
+#include "Dice.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main()
+{
+    cout << "Hello Dungeons" << endl;
+
     return 0;
 }

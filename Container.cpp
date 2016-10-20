@@ -4,12 +4,12 @@ Container::Container()
 {
     itemList = new Item[64];        // Container is list of size 64
     items = 0;                      // Size initiated to 0
-}
+} // end of Default Constructor
 
 Container::~Container()
 {
     delete [] itemList;             // destruction of itemList
-}
+} // end of Destructor
 
 void Container::addItem(Item item)
 {
@@ -20,7 +20,7 @@ void Container::addItem(Item item)
     }
     else
         cout << "Container is full, cannot add Item" << endl;
-}
+} // end of addItem()
 
 Item Container::getItem(string name)
 {
@@ -33,4 +33,4 @@ Item Container::getItem(string name)
     // Item is not found, empty item is returned
     cout << "Item '" << name << "' not in container" << endl;
     return *new Item;
-}
+} // end of getItem()

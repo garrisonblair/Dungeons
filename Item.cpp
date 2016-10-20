@@ -1,6 +1,6 @@
 #include "Item.h"
 
-Item::Item() {}
+Item::Item() {} // end of Default Constructor
 
 Item::Item(char type, int e)
 {
@@ -80,10 +80,10 @@ Item::Item(char type, int e)
 
         default:
             break;
-    }
+    } // end of switch statement
 
     enchantment = e;
-}
+} // end of Parametrized Constructor
 
 Item::Item(const Item &item)
 {
@@ -92,14 +92,14 @@ Item::Item(const Item &item)
     for (unsigned int i = 0; i < 9; i++) {
         enhance[i] = item.enhance[i];
     }
-}
+} // end of Copy Constructor
 
-string Item::getName() const { return name;}
+string Item::getName() const { return name;} // end of getName()
 
-char Item::getType() const { return type;}
+char Item::getType() const { return type;} // end of getType()
 
-int Item::getEnchantment() const { return enchantment;}
+int Item::getEnchantment() const { return enchantment;} // end of getEnchantment()
 
-int* Item::getEnhancement() { return enhance;}
+int* Item::getEnhancement() { return enhance;} // end of getEnhancement()
 
-void Item::setName(string n) { name = n;}
+void Item::setName(string n) { name = n;} // end of setname()
