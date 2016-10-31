@@ -17,6 +17,7 @@ void Container::addItem(Item item)
     {
         itemList[items] = item;     // Item appended to list if container is not full
         items++;                    // Size of list incremented
+        cout << "Item added successfully" << endl;
     }
     else
         cout << "Container is full, cannot add Item" << endl;
@@ -24,13 +25,18 @@ void Container::addItem(Item item)
 
 Item Container::getItem(string name)
 {
-    // Searches for name in the list and returns associated item if the name is found
-    for (unsigned int i = 0; i < items; i++) {
-        if (name == itemList[i].getName()) {
-            return itemList[i];
+    try
+    {
+        // Searches for name in the list and returns associated item if the name is found
+        for (unsigned int i = 0; i < items; i++) {
+            if (name == itemList[i].getName()) {
+                return itemList[i];
+            }
         }
-    }
-    // Item is not found, empty item is returned
-    cout << "Item '" << name << "' not in container" << endl;
-    return *new Item;
+        // Item is not found, empty item is returned
+        throw ("Item '" + name + "' not in container\n");
+    } catch (string error) {
+    cout << error;
+    return *new Item();
+}
 } // end of getItem()

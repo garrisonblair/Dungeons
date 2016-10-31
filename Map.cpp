@@ -54,7 +54,7 @@ void Map::setEnd(int x, int y)
     endY = y;
 }
 
-void Map::setCell(int x, int y, int c)
+void Map::setCell(int x, int y, char c)
 {
     grid[x][y].setType(c);
 }
@@ -92,4 +92,69 @@ bool Map::test()
 {
     clearFlags();
     return checkPath(startX, startY);
+}
+
+void Map::print()
+{
+    for (int y = 0; y < length; y++)
+    {
+        for (int i = 0; i < width; i++)
+            cout << "--------";
+        cout << "-" << endl;
+        for (int x = 0; x < width; x++) {
+            cout << "|";
+            switch (grid[x][y].getType().getObj()) {
+                case 'n':
+                    cout << "       ";
+                    break;
+                case 'd':
+                    cout << "  |-|  ";
+                    break;
+                case 'c':
+                    cout << "  ___  ";
+                    break;
+                case 'e':
+                    cout << "  -E-  ";
+                    break;
+                case 'w':
+                    cout << "|||||||";
+                    break;
+                case 'p':
+                    cout << "   P   ";
+                    break;
+                default:
+                    break;
+            }
+        }
+        cout << "|" << endl;
+        for (int x = 0; x < width; x++) {
+            cout << "|";
+            switch (grid[x][y].getType().getObj()) {
+                case 'n':
+                    cout << "       ";
+                    break;
+                case 'd':
+                    cout << "  |D|  ";
+                    break;
+                case 'c':
+                    cout << " | C | ";
+                    break;
+                case 'e':
+                    cout << "  / \\  ";
+                    break;
+                case 'w':
+                    cout << "|||||||";
+                    break;
+                case 'p':
+                    cout << "  ( )  ";
+                    break;
+                default:
+                    break;
+            }
+        }
+        cout << "|" << endl;
+    }
+    for (int i = 0; i < width; i++)
+        cout << "--------";
+    cout << "-" << endl;
 }

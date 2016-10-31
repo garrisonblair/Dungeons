@@ -1,37 +1,37 @@
-#ifndef MAP_CELL_H
-#define MAP_CELL_H
+#ifndef MAP_MAP_H
+#define MAP_MAP_H
 
-#include <iostream>
+#include "Cell.h"
 
-using namespace std;
-
-class Type
+class Map
 {
-    bool blocked;
+    string name;
+    string description;
+    int width, length;
+    int startX, startY;
+    int endX, endY;
+
+    Cell ** grid;
 
 public:
-    Type();
-    Type(int);
+    Map();
+    Map(int, int);
 
-    bool isBlocked() const;
+    string getName() const;
+    string getDescription() const;
+    Cell getCell(int, int);
+
+    void setName(string);
+    void setDescription(string);
+    void setStart(int, int);
+    void setEnd(int, int);
+    void setCell(int, int, char);
+    void clearFlags();
+
+    bool checkPath(int, int);
+    bool test();
+
+    void print();
 };
 
-class Cell
-{
-    bool flagged;
-    Type type;
-
-public:
-    Cell();
-    Cell(Type);
-
-    bool isFlagged() const;
-
-    void flag();
-    void unFlag();
-    void setType(int);
-
-    Type getType() const;
-};
-
-#endif //MAP_CELL_H
+#endif //MAP_MAP_H

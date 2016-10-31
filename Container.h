@@ -1,7 +1,28 @@
+//////////////////////////////////////////////////////////
+/// GAME RULES: A container serves the purpose of      ///
+/// storing items, whether in a chest, backpack, or    ///
+/// worn items.                                        ///
+//////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////
+/// DESIGN: A container is an object that has a dynam- ///
+/// array containing items, and an integer keeping     ///
+/// track of its size, capped at 64 by default.        ///
+//////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////
+/// LIBRARIES USED:                                    ///
+/// iosteam: The only library used, it's purpose is to ///
+///          allow the user to see and interact with   ///
+///          the objects, to better understand what is ///
+///          happening.                                ///
+/// string:  It is used to search the items with       ///
+///          strings.                                  ///
+//////////////////////////////////////////////////////////
+
 #ifndef Container_hpp
 #define Container_hpp
 
-#include <stdio.h>
 #include <iostream>
 #include <string>
 #include "Item.h"

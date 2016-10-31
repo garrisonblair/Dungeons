@@ -1,6 +1,13 @@
 #include "Item.h"
 
-Item::Item() {} // end of Default Constructor
+Item::Item()
+{
+    name = "Item";
+    enchantment = 0;
+    for (unsigned int i = 0; i < 9; i++) {
+        enhance[i] = 0;
+    }
+} // end of Default Constructor
 
 Item::Item(char type, int e)
 {

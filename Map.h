@@ -25,11 +25,13 @@ public:
     void setDescription(string);
     void setStart(int, int);
     void setEnd(int, int);
-    void setCell(int, int, int);
+    void setCell(int, int, char);
     void clearFlags();
 
     bool checkPath(int, int);
     bool test();
+
+    void print();
 };
 
 #endif //MAP_MAP_H
