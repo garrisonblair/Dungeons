@@ -1,14 +1,13 @@
 #include <iostream>
-#include "Cell.h"
-#include "Map.h"
-#include "Character.h"
-#include "Item.h"
-#include "Container.h"
-#include "Dice.h"
+#include "Game.h"
 
-int main()
-{
-    cout << "Hello Dungeons" << endl;
+int main() {
+
+    Edit * game;
+    game = new Edit();
+
+    game->createCampaign();
+    game->editCampaign();
 
     return 0;
 }

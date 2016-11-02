@@ -16,6 +16,6 @@ set(SOURCE_FILES
         Item.h
     main.cpp
     Map.cpp
-        Map.h)
+        Map.h Game.cpp Game.h Builder.cpp Builder.h Campaign.cpp Campaign.h Director.h)
 
 add_executable(Dungeons ${SOURCE_FILES})

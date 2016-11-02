@@ -2,61 +2,50 @@
 
 Map::Map()
 {
-    name = "Default Map";
-    description = "10x10";
     width = 10;
     length = 10;
-    startX = 0;
-    startY = 0;
-    endX = 10;
-    endY = 10;
+    name = "Empty Map";
 
     grid = new Cell*[length]();
     for (unsigned int i = 0; i < length; i++)
         grid[i] = new Cell[width];
-}
+} // End default constructor
 
-Map::Map(int x, int y)
+Map::Map(string in, int x, int y)
 {
-    name = "Default Map";
-    description = to_string(x) + "x" + to_string(y);
     width = x;
     length = y;
+    name = in;
 
     grid = new Cell*[length]();
     for (unsigned int i = 0; i < length; i++)
         grid[i] = new Cell[width];
 }
 
-string Map::getName() const { return name; }
-string Map::getDescription() const { return description; }
+Map::~Map()
+{
+//    for (unsigned int i = 0; i < length; i++)
+//        delete [] grid[i];
+}
+
 Cell Map::getCell(int x, int y) { return grid[x][y]; }
+int Map::getWidth() const { return width; }
+int Map::getLength() const { return length; }
+string Map::getName() const { return name; }
 
-void Map::setName(string n)
+void Map::setName(string in)
 {
-    name = n;
-}
-
-void Map::setDescription(string d)
-{
-    description = d;
-}
-
-void Map::setStart(int x, int y)
-{
-    startX = x;
-    startY = y;
-}
-
-void Map::setEnd(int x, int y)
-{
-    endX = x;
-    endY = y;
-}
+    name = in;
+} // End function setName
 
 void Map::setCell(int x, int y, char c)
 {
     grid[x][y].setType(c);
+} // End function setCell
+
+void Map::setCell(int x1, int y1, string name, int x2, int y2)
+{
+    grid[x1][y1].setType(name, x2, y2);
 }
 
 void Map::clearFlags()
@@ -64,46 +53,55 @@ void Map::clearFlags()
     for (unsigned int i = 0; i < length; i++)
         for (unsigned int j = 0; j < width; j++)
             if (grid[i][j].isFlagged()) grid[i][j].unFlag();
-}
+} // End function clearFlags
 
 bool Map::checkPath(int x, int y)
 {
-    grid[x][y].flag();
-    if ((x == endX) && (y == endY)) return true;
+    if ((grid[x][y].getType() == 'd') && !(grid[x][y].isFlagged()))
+        return true;
     else {
+        grid[x][y].flag();    // Mark current cell as visited
         if (y + 1 < length)
-            if (!(grid[x][y + 1].isFlagged()) && !(grid[x][y + 1].getType().isBlocked()))
-                if (checkPath(x, y + 1)) return true;
+            if (!(grid[x][y + 1].isFlagged()) && !(grid[x][y + 1].isBlocked()))
+                if (checkPath(x, y + 1)) return true;   // Checks Cell above current location
         if (x + 1 < width)
-            if (!(grid[x + 1][y].isFlagged()) && !(grid[x + 1][y].getType().isBlocked()))
-                if (checkPath(x + 1, y)) return true;
+            if (!(grid[x + 1][y].isFlagged()) && !(grid[x + 1][y].isBlocked()))
+                if (checkPath(x + 1, y)) return true;   // Checks Cell to right of current location
         if (x - 1 >= 0)
-            if (!(grid[x - 1][y].isFlagged()) && !(grid[x - 1][y].getType().isBlocked()))
-                if (checkPath(x - 1, y)) return true;
+            if (!(grid[x - 1][y].isFlagged()) && !(grid[x - 1][y].isBlocked()))
+                if (checkPath(x - 1, y)) return true;   // Checks Cell to left of current location
         if (y - 1 >= 0)
-            if (!(grid[x][y - 1].isFlagged()) && !(grid[x][y - 1].getType().isBlocked()))
-                if (checkPath(x, y - 1)) return true;
+            if (!(grid[x][y - 1].isFlagged()) && !(grid[x][y - 1].isBlocked()))
+                if (checkPath(x, y - 1)) return true;   // Checks Cell below current location
     }
-    return false;
-}
+    return false;   // If not adjacent Cells are viable (terminates function if reached at root Cell)
+} // End function checkPath
 
 
-bool Map::test()
+bool Map::verify()
 {
-    clearFlags();
-    return checkPath(startX, startY);
-}
+    for (unsigned int i = 0; i < width; i++)
+        for (unsigned int j = 0; j< length; j++)
+        {
+            clearFlags();
+            if (grid[i][j].getType() == 'd')
+            {
+                grid[i][j].flag();
+                if (checkPath(i, j)) return true;
+            }
+        }
+} // End function test
 
 void Map::print()
 {
-    for (int y = 0; y < length; y++)
+    for (int y = length-1; y >= 0; y--)
     {
         for (int i = 0; i < width; i++)
             cout << "--------";
         cout << "-" << endl;
         for (int x = 0; x < width; x++) {
             cout << "|";
-            switch (grid[x][y].getType().getObj()) {
+            switch (grid[x][y].getType()) {
                 case 'n':
                     cout << "       ";
                     break;
@@ -120,7 +118,7 @@ void Map::print()
                     cout << "|||||||";
                     break;
                 case 'p':
-                    cout << "   P   ";
+                    cout << "  -P-  ";
                     break;
                 default:
                     break;
@@ -129,7 +127,7 @@ void Map::print()
         cout << "|" << endl;
         for (int x = 0; x < width; x++) {
             cout << "|";
-            switch (grid[x][y].getType().getObj()) {
+            switch (grid[x][y].getType()) {
                 case 'n':
                     cout << "       ";
                     break;
@@ -146,7 +144,7 @@ void Map::print()
                     cout << "|||||||";
                     break;
                 case 'p':
-                    cout << "  ( )  ";
+                    cout << "  / \\  ";
                     break;
                 default:
                     break;

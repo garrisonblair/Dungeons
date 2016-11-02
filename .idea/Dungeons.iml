@@ -5,15 +5,22 @@
       <sourceFolder url="file://$MODULE_DIR$/Dice.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Container.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Character.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Director.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Game.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Dice.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Map.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Campaign.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Game.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Container.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Builder.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Campaign.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Item.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Character.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Item.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Cell.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Builder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Cell.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Map.h" isTestSource="false" />
     </content>

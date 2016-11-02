@@ -1,37 +1,97 @@
-#ifndef MAP_MAP_H
-#define MAP_MAP_H
-
 #include "Cell.h"
 
-class Map
+/////////////////////////////////////
+/////// TYPE MEMBER FUNCTIONS ///////
+/////////////////////////////////////
+
+Type::Type()
 {
-    string name;
-    string description;
-    int width, length;
-    int startX, startY;
-    int endX, endY;
+    obj = 'n';
+    blocked = false;
+} //End default constructor
 
-    Cell ** grid;
+Type::Type(char in)
+{
+    if (in == 'w') blocked = true;
+    else blocked = false;
 
-public:
-    Map();
-    Map(int, int);
+    obj = in;
+} //End Constructor
 
-    string getName() const;
-    string getDescription() const;
-    Cell getCell(int, int);
+Type::Type(string in, int a, int b)
+{
+    door = new Door(in, a, b);
+    blocked = false;
 
-    void setName(string);
-    void setDescription(string);
-    void setStart(int, int);
-    void setEnd(int, int);
-    void setCell(int, int, char);
-    void clearFlags();
+    obj = 'd';
+}
 
-    bool checkPath(int, int);
-    bool test();
+char Type::getObj() const { return obj; }
+Door * Type::getDoor() const { return door; }
+bool Type::isBlocked() const { return blocked; }
 
-    void print();
-};
+/////////////////////////////////////
+/////// DOOR MEMBER FUNCTIONS ///////
+/////////////////////////////////////
 
-#endif //MAP_MAP_H
+Door::Door()
+{
+    link = "";
+    x = 0;
+    y = 0;
+}
+
+Door::Door(string name, int a, int b)
+{
+    link = name;
+    x = a;
+    y = b;
+}
+
+void Door::setLink(string name, int inx, int iny)
+{
+    link = name;
+    x = inx;
+    y = iny;
+}
+
+string Door::getLink() const { return link; }
+int Door::getX() const { return x; }
+int Door::getY() const { return y; }
+
+/////////////////////////////////////
+/////// CELL MEMBER FUNCTIONS ///////
+/////////////////////////////////////
+
+Cell::Cell()
+{
+    flagged = false;
+} // End default constructor
+
+Cell::Cell(Type in)
+{
+    flagged = false;
+    type = in;
+} // End constructor
+
+bool Cell::isFlagged() const { return flagged; }
+bool Cell::isBlocked() const { return type.isBlocked(); }
+
+void Cell::flag() { flagged = true; }
+void Cell::unFlag() { flagged = false; }
+
+void Cell::setType(char in) { type = Type(in); } // End function setType
+void Cell::setType(string name, int x, int y)
+{
+    type = Type(name, x, y);
+}
+void Cell::removeType() { type = NULL; } // End function removeType
+
+char Cell::getType() const { return type.getObj(); }
+Door * Cell::getDoor() const
+{
+    if (type.getObj() == 'd')
+        return type.getDoor();
+    else
+        return new Door;
+}
