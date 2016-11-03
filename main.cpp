@@ -1,13 +1,10 @@
-#include <iostream>
-#include "Game.h"
+#include "Menu.h"
 
 int main() {
 
-    Edit * game;
-    game = new Edit();
+    Menu menu = Menu();
+    menu.mainMenu();
 
-    game->createCampaign();
-    game->editCampaign();
 
     return 0;
 }

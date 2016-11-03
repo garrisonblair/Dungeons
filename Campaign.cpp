@@ -158,7 +158,7 @@ void Campaign::saveMap() const
                     active << ' ' << campaign[current].getCell(j, i).getCharacter()->getLevel();
                     active << ' ' << campaign[current].getCell(j, i).getCharacter()->getClass();
                     active << ' ' << campaign[current].getCell(j, i).getCharacter()->getName();
-                    active << ' ' << campaign[current].getCell(j, i).getCharacter()->getItem("w").getEnchantment();
+                    active << ' ' << campaign[current].getCell(j, i).getCharacter()->getItem('w').getEnchantment();
                     for (unsigned int k = 0; k < 9; k++)
                         active << ' ' << campaign[current].getCell(j, i).getCharacter()->getStat(k);
                     active << '\n';

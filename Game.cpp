@@ -19,7 +19,7 @@ void Game::save()
     target = campaign->getName() + ".txt";
 
     ofstream campfile;
-    campfile.open(target);
+    campfile.open("Save_Data/" + target);
 
     for (unsigned int i = 0; i < campaign->getPos(); i++)
     {
@@ -28,30 +28,20 @@ void Game::save()
 }
 
 // LOAD MAP TO CAMPAIGN
-void Game::load()
+void Game::load(string target)
 {
     Director * direct = new Director();
     Builder * build = new EditBuilder();
-
-    string target;
-    cout << "Which file would you like to load?" << endl;
-    cin >> target;
 
     ifstream active;
     active.open(target);
     string line;
     while (active >> line)
     {
-        cout << target << " " << line << endl;
-        if (target == line)
-            direct->setBuilder(build);
-        direct->constructMap(target);
-
+        direct->setBuilder(build);
+        direct->constructMap(line);
         campaign->addMap(*direct->getMap());
     }
-
-
-
 }
 
 // CREATE NEW CAMPAIGN FILE
@@ -98,4 +88,5 @@ void Edit::editCampaign()
     } while (1);
 
     this->save();
+    cout << " Saved campaign to " << campaign->getName() << ".txt" << endl;
 }

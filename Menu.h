@@ -5,16 +5,16 @@
 
 class Menu
 {
-    Game * game;
+    Edit * game;
     int gameMode;
 
 public:
     Menu();
     ~Menu();
 
-    void mainMenu();
     void edit();
     void play();
+    void mainMenu();
 };
 
 

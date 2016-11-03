@@ -14,7 +14,8 @@ public:
     ~Game();
 
     void save();
-    void load();
+    void load(string);
+    void loadCampaign(string);
     void newGame();
 
     Map getMap(int) const;
