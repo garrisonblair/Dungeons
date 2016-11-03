@@ -30,8 +30,11 @@ public:
     Character(int, string, string);     // constructor w/ level
     ~Character(); 					    // deconstructor
 
-    int getStat(int);       // returns stats
-    Item getItem(char);
+    int getStat(int) const;       // returns stats
+    Item getItem(char) const;
+    int getLevel() const;
+    string getClass() const;
+    string getName() const;
     
     void equip(Item); 		// applies stat changes from items
     int mod(int); 			// calculates stat modifier

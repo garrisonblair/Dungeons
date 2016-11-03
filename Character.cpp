@@ -103,9 +103,9 @@ void Character::equip(Item gear)
     
 } // end function equip
 
-int Character::getStat(int i) { return stats[i];}
+int Character::getStat(int i) const { return stats[i];}
 
-Item Character::getItem(char c)
+Item Character::getItem(char c) const
 {
     switch (c)
     {
@@ -125,6 +125,10 @@ Item Character::getItem(char c)
             break;
     }
 }
+
+int Character::getLevel() const { return level; }
+string Character::getClass() const { return role; }
+string Character::getName() const { return name; }
 
 int Character::mod(int stat)
 {

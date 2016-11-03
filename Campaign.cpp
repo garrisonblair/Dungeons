@@ -148,14 +148,19 @@ void Campaign::saveMap() const
                     break;
                 case 'c':
                     active << ' ' << campaign[current].getCell(j, i).getContainer()->getSize();
-                    for (unsigned int i = 0; i < campaign[current].getCell(j, i).getContainer()->getSize(); i++) {
-                        active << '\n' << campaign[current].getCell(j, i).getContainer()->getItem(i).getType();
-                        active << ' ' << campaign[current].getCell(j, i).getContainer()->getItem(i).getEnchantment();
+                    for (unsigned int k = 0; k < campaign[current].getCell(j, i).getContainer()->getSize(); k++) {
+                        active << '\n' << campaign[current].getCell(j, i).getContainer()->getItem(k).getType();
+                        active << ' ' << campaign[current].getCell(j, i).getContainer()->getItem(k).getEnchantment();
                     }
                     active << '\n';
                     break;
                 case 'e':
-
+                    active << ' ' << campaign[current].getCell(j, i).getCharacter()->getLevel();
+                    active << ' ' << campaign[current].getCell(j, i).getCharacter()->getClass();
+                    active << ' ' << campaign[current].getCell(j, i).getCharacter()->getName();
+                    active << ' ' << campaign[current].getCell(j, i).getCharacter()->getItem("w").getEnchantment();
+                    for (unsigned int k = 0; k < 9; k++)
+                        active << ' ' << campaign[current].getCell(j, i).getCharacter()->getStat(k);
                     active << '\n';
                     break;
                 case 'w':
