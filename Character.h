@@ -32,7 +32,7 @@ public:
 
     int * getStats();       // returns stats array
     
-    void equip(Item&); 		// applies stat changes from items
+    void equip(Item); 		// applies stat changes from items
     int mod(int); 			// calculates stat modifier
     int prof();				// calculates proficiency bonus
 };

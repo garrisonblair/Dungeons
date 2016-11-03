@@ -48,6 +48,11 @@ void Map::setCell(int x1, int y1, string name, int x2, int y2)
     grid[x1][y1].setType(name, x2, y2);
 }
 
+void Map::setCell(int x, int y, int lvl, string cls, string name)
+{
+    grid[x][y].setType(lvl, cls, name);
+}
+
 void Map::clearFlags()
 {
     for (unsigned int i = 0; i < length; i++)
@@ -90,6 +95,7 @@ bool Map::verify()
                 if (checkPath(i, j)) return true;
             }
         }
+    return false;
 } // End function test
 
 void Map::print()

@@ -23,6 +23,18 @@ void Container::addItem(Item item)
         cout << "Container is full, cannot add Item" << endl;
 } // end of addItem()
 
+void Container::addItem(char t, int e)
+{
+    if (items < 64)
+    {
+        itemList[items] = Item(t, e);     // Item appended to list if container is not full
+        items++;                    // Size of list incremented
+        cout << "Item added successfully" << endl;
+    }
+    else
+        cout << "Container is full, cannot add Item" << endl;
+}
+
 Item Container::getItem(string name)
 {
     try

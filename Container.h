@@ -39,6 +39,7 @@ public:
     ~Container();           // Destructor
     
     void addItem(Item);     // Add item to container
+    void addItem(char, int);
     Item getItem(string);   // Get Item from container based on name
 };
 

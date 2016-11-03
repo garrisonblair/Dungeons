@@ -34,7 +34,7 @@ Character::Character(int lvl, string cls, string n)
     stats[7] = 10 + this->mod(stats[1]);							// AC = base + dex modifier
 } // end constructor
 
-void Character::equip(Item &gear)
+void Character::equip(Item gear)
 {
     switch (gear.getType())					// case for each type of equippable item
     {

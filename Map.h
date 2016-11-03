@@ -65,6 +65,7 @@ public:
     // Path testing functions
     void setCell(int, int, char);
     void setCell(int, int, string, int, int);
+    void setCell(int, int, int, string, string);
     void clearFlags();
     bool checkPath(int, int);
     bool verify();

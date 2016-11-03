@@ -12,7 +12,13 @@ Type::Type()
 
 Type::Type(char in)
 {
-    if (in == 'w') blocked = true;
+    if (in == 'w')
+        blocked = true;
+    else if (in == 'c')
+    {
+        container = new Container();
+        blocked = false;
+    }
     else blocked = false;
 
     obj = in;
@@ -26,8 +32,18 @@ Type::Type(string in, int a, int b)
     obj = 'd';
 }
 
+Type::Type(int lvl, string cls, string name)
+{
+    character = new Character(lvl, cls, name);
+    blocked = false;
+
+    obj = 'e';
+}
+
 char Type::getObj() const { return obj; }
 Door * Type::getDoor() const { return door; }
+Container * Type::getContainer() const { return container; }
+Character * Type::getCharacter() const { return character; }
 bool Type::isBlocked() const { return blocked; }
 
 /////////////////////////////////////
@@ -85,13 +101,36 @@ void Cell::setType(string name, int x, int y)
 {
     type = Type(name, x, y);
 }
+
+void Cell::setType(int lvl, string cls, string name)
+{
+    type = Type(lvl, cls, name);
+}
+
 void Cell::removeType() { type = NULL; } // End function removeType
 
 char Cell::getType() const { return type.getObj(); }
+
 Door * Cell::getDoor() const
 {
     if (type.getObj() == 'd')
         return type.getDoor();
     else
         return new Door;
+}
+
+Container * Cell::getContainer() const
+{
+    if (type.getObj() == 'c')
+        return type.getContainer();
+    else
+        return new Container;
+}
+
+Character * Cell::getCharacter() const
+{
+    if (type.getObj() == 'e')
+        return type.getCharacter();
+    else
+        return new Character;
 }
