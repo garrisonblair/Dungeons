@@ -26,7 +26,7 @@ class PlayBuilder : public Builder
 {
 
 public:
-    void buildMap(string);
+    void buildMap(string, Character);
 };
 
 #endif /* Builder_h */
