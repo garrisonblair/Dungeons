@@ -8,8 +8,12 @@ Type::Type()
 {
     obj = 'n';
     blocked = false;
+    door = NULL;
+    container = NULL;
+    character = NULL;
 } //End default constructor
 
+// Normal Constructor
 Type::Type(char in)
 {
     if (in == 'w')
@@ -18,24 +22,32 @@ Type::Type(char in)
     {
         container = new Container();
         blocked = false;
+        door = NULL;
+        character = NULL;
     }
     else blocked = false;
 
     obj = in;
 } //End Constructor
 
+// Door Constructor
 Type::Type(string in, int a, int b)
 {
     door = new Door(in, a, b);
     blocked = false;
+    container = NULL;
+    character = NULL;
 
     obj = 'd';
 }
 
+// Character Constructor
 Type::Type(int lvl, string cls, string name)
 {
     character = new Character(lvl, cls, name);
     blocked = false;
+    container = NULL;
+    door = NULL;
 
     obj = 'e';
 }
@@ -96,16 +108,15 @@ bool Cell::isBlocked() const { return type.isBlocked(); }
 void Cell::flag() { flagged = true; }
 void Cell::unFlag() { flagged = false; }
 
-void Cell::setType(char in) { type = Type(in); } // End function setType
-void Cell::setType(string name, int x, int y)
-{
-    type = Type(name, x, y);
-}
 
-void Cell::setType(int lvl, string cls, string name)
-{
-    type = Type(lvl, cls, name);
-}
+// Normal setType
+void Cell::setType(char in) { type = Type(in); }
+
+// Door setType
+void Cell::setType(string name, int x, int y) { type = Type(name, x, y); }
+
+// Character setType
+void Cell::setType(int lvl, string cls, string name) { type = Type(lvl, cls, name); }
 
 void Cell::removeType() { type = NULL; } // End function removeType
 
@@ -116,7 +127,7 @@ Door * Cell::getDoor() const
     if (type.getObj() == 'd')
         return type.getDoor();
     else
-        return new Door;
+        return NULL;
 }
 
 Container * Cell::getContainer() const
@@ -124,7 +135,7 @@ Container * Cell::getContainer() const
     if (type.getObj() == 'c')
         return type.getContainer();
     else
-        return new Container;
+        return NULL;
 }
 
 Character * Cell::getCharacter() const
@@ -132,5 +143,5 @@ Character * Cell::getCharacter() const
     if (type.getObj() == 'e')
         return type.getCharacter();
     else
-        return new Character;
+        return NULL;
 }

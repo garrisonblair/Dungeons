@@ -40,6 +40,7 @@ void Campaign::createMap()
         cin >> y;
         campaign[pos].setCell(x-1, y-1, "CAMPAIGN_START", 0, 0);
     }
+    campaign[pos].print();
     pos++;
 }
 
@@ -169,6 +170,8 @@ void Campaign::addMap(Map & loaded)
     pos++;
 }
 
+string Campaign::getName() const { return name; }
+
 // ACCESS MAP
 Map Campaign::getMap(int x) const
 {
@@ -186,6 +189,6 @@ void Campaign::print() const
 {
     unsigned int i = 0;
     for (; i < pos; i++)
-        cout << i << ". " << campaign[i].getName() << endl;
-    cout << i << ". New Map" << endl;
+        cout << i+1 << ". " << campaign[i].getName() << endl;
+    cout << i+1 << ". New Map" << endl;
 }

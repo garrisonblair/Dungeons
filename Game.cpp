@@ -16,11 +16,10 @@ Map Game::getMap(int x) const
 void Game::save()
 {
     string target;
-    cout << "Input the destination file: ";
-    cin >> target;
+    target = campaign->getName() + ".txt";
 
     ofstream campfile;
-    campfile.open("camp.txt");
+    campfile.open(target);
 
     for (unsigned int i = 0; i < campaign->getPos(); i++)
     {
@@ -31,15 +30,27 @@ void Game::save()
 // LOAD MAP TO CAMPAIGN
 void Game::load()
 {
-    string target;
-    cout << "Which file would you like to load?" << endl;
-
     Director * direct = new Director();
     Builder * build = new EditBuilder();
-    direct->setBuilder(build);
-    direct->constructMap("file.txt");
 
-    campaign->addMap(*direct->getMap());
+    string target;
+    cout << "Which file would you like to load?" << endl;
+    cin >> target;
+
+    ifstream active;
+    active.open(target);
+    string line;
+    while (active >> line)
+    {
+        cout << target << " " << line << endl;
+        if (target == line)
+            direct->setBuilder(build);
+        direct->constructMap(target);
+
+        campaign->addMap(*direct->getMap());
+    }
+
+
 
 }
 
@@ -70,6 +81,7 @@ void Edit::editCampaign()
         campaign->print();
         cout << "Which Map would you like to edit? ";
         cin >> active;
+        active--;
         if (active == campaign->getPos())
             campaign->createMap();
         else if (active <= campaign->getPos())

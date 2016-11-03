@@ -22,6 +22,7 @@ public:
     void saveMap() const;
     void addMap(Map &);
 
+    string getName() const;
     Map getMap(int) const;
     int getPos() const;
     void print() const;

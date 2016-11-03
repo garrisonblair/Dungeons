@@ -18,8 +18,6 @@ public:
     void newGame();
 
     Map getMap(int) const;
-
-    //virtual void print() = 0;
 };
 
 class Edit: public Game
@@ -30,14 +28,11 @@ public:
 
     void createCampaign();
     void editCampaign();
-    //void print();
 };
 
 class Play: public Game
 {
-    //Dice dice;
-    //Character * player;
-    //
+
 public:
     Play();
     void play();
