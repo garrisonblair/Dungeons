@@ -35,7 +35,8 @@ public:
     int getLevel() const;
     string getClass() const;
     string getName() const;
-    
+
+    void setStat(int, int);
     void equip(Item); 		// applies stat changes from items
     int mod(int); 			// calculates stat modifier
     int prof();				// calculates proficiency bonus

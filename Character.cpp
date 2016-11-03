@@ -130,6 +130,8 @@ int Character::getLevel() const { return level; }
 string Character::getClass() const { return role; }
 string Character::getName() const { return name; }
 
+void Character::setStat(int i, int x) { stats[i] = x;}
+
 int Character::mod(int stat)
 {
     int modifier = -5;								// assume lowest stat modifier

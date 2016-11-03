@@ -9,7 +9,7 @@ void EditBuilder::buildMap(string filename)
     int x, y;
     int dx, dy;
     int size, e;
-    int lvl;
+    int lvl, en;
     string in, link, cls, name;
     char t, t2;
 
@@ -39,12 +39,13 @@ void EditBuilder::buildMap(string filename)
                     }
                     break;
                 case 'e':
-                    active >> lvl >> cls >> name >> size;
+                    active >> lvl >> cls >> name >> en;
                     map->setCell(j, i, lvl, cls, name);
-                    for (int e = 0; e < size; e++)
+                    map->getCell(j, i).getCharacter()->equip(Item('w', e));
+                    for (int k = 0; k < 9; k++)
                     {
-                        active >> t >> e;
-                        map->getCell(j, i).getCharacter()->equip(Item(t, e));
+                        active >> en;
+                        map->getCell(j, i).getCharacter()->setStat(k, en);
                     }
                     break;
                 case 'w':

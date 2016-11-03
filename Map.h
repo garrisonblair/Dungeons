@@ -59,7 +59,7 @@ public:
     int getLength() const;
     string getName() const;
 
-    // Attribute modifier functions
+    // Attribute modifier functions`
     void setName(string);
 
     // Path testing functions
