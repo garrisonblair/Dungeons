@@ -52,3 +52,7 @@ Item Container::getItem(string name)
     return *new Item();
 }
 } // end of getItem()
+
+int Container::getSize() const { return items; }
+
+Item Container::getItem(int i) const { return itemList[i]; }

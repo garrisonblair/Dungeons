@@ -41,6 +41,8 @@ public:
     void addItem(Item);     // Add item to container
     void addItem(char, int);
     Item getItem(string);   // Get Item from container based on name
+    int getSize() const;
+    Item getItem(int) const;
 };
 
 #endif /* Container_hpp */

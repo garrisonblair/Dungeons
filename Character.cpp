@@ -103,7 +103,28 @@ void Character::equip(Item gear)
     
 } // end function equip
 
-int* Character::getStats() { return stats;}
+int Character::getStat(int i) { return stats[i];}
+
+Item Character::getItem(char c)
+{
+    switch (c)
+    {
+        case 'a':
+            return armor;
+        case 'h':
+            return helmet;
+        case 'b':
+            return boots;
+        case 's':
+            return shield;
+        case 'w':
+            return weapon;
+        case 'r':
+            return ring;
+        default:
+            break;
+    }
+}
 
 int Character::mod(int stat)
 {
@@ -126,3 +147,5 @@ int Character::prof()
     }
     return proficiency;
 }// end function prof
+
+

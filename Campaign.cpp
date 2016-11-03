@@ -147,9 +147,15 @@ void Campaign::saveMap() const
                     active << '\n';
                     break;
                 case 'c':
+                    active << ' ' << campaign[current].getCell(j, i).getContainer()->getSize();
+                    for (unsigned int i = 0; i < campaign[current].getCell(j, i).getContainer()->getSize(); i++) {
+                        active << '\n' << campaign[current].getCell(j, i).getContainer()->getItem(i).getType();
+                        active << ' ' << campaign[current].getCell(j, i).getContainer()->getItem(i).getEnchantment();
+                    }
                     active << '\n';
                     break;
                 case 'e':
+
                     active << '\n';
                     break;
                 case 'w':
